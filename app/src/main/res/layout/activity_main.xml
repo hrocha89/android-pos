@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/label_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/album"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/nomeAlbum"
+            android:layout_width="358dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/hint_album"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName|textCapWords"
+            android:textColorHint="#757575"
+            app:layout_constraintStart_toStartOf="@+id/label_album"
+            app:layout_constraintTop_toBottomOf="@+id/label_album"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/label_ano"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ano_gravacao"
+            app:layout_constraintStart_toStartOf="@+id/nomeAlbum"
+            app:layout_constraintTop_toBottomOf="@+id/nomeAlbum" />
+
+        <EditText
+            android:id="@+id/anoGravacao"
+            android:layout_width="358dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/hint_ano_gravacao"
+            android:inputType="number|textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/nomeAlbum"
+            app:layout_constraintStart_toStartOf="@+id/label_ano"
+            app:layout_constraintTop_toBottomOf="@+id/label_ano" />
+
+        <Button
+            android:id="@+id/btnLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/btnLimpar"
+            app:layout_constraintEnd_toEndOf="@+id/genero"
+            app:layout_constraintTop_toBottomOf="@+id/genero" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/btnSalvar"
+            app:layout_constraintStart_toStartOf="@+id/genero"
+            app:layout_constraintTop_toBottomOf="@+id/genero" />
+
+        <CheckBox
+            android:id="@+id/isVinil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/disco_vinil"
+            app:layout_constraintStart_toStartOf="@+id/anoGravacao"
+            app:layout_constraintTop_toBottomOf="@+id/anoGravacao" />
+
+        <RadioGroup
+            android:id="@+id/item"
+            android:layout_width="84dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/anoGravacao"
+            app:layout_constraintTop_toBottomOf="@+id/anoGravacao">
+
+            <RadioButton
+                android:id="@+id/rbOriginal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rb_original" />
+
+            <RadioButton
+                android:id="@+id/rbCopia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rb_copia" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/label_genero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/generos"
+            app:layout_constraintStart_toStartOf="@+id/isVinil"
+            app:layout_constraintTop_toBottomOf="@+id/item" />
+
+        <Spinner
+            android:id="@+id/genero"
+            android:layout_width="363dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/hint_genero"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="@+id/item"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="@+id/label_genero"
+            app:layout_constraintTop_toBottomOf="@+id/label_genero" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

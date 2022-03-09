@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="albums_name">
+        <item>@string/d_kind_of_blue</item>
+        <item>@string/d_maiden_voyage</item>
+        <item>@string/d_dark_side</item>
+        <item>@string/d_elis_tom</item>
+        <item>@string/d_bright_size_life</item>
+        <item>@string/d_elis_montreux</item>
+        <item>@string/d_osesp_santoro</item>
+        <item>@string/d_back_to_black</item>
+        <item>@string/d_osesp_cancoes</item>
+        <item>@string/d_trio_corrente</item>
+    </string-array>
+
+    <integer-array name="ano_gravacao">
+        <item>1959</item>
+        <item>1965</item>
+        <item>1973</item>
+        <item>1974</item>
+        <item>1976</item>
+        <item>1979</item>
+        <item>2006</item>
+        <item>2006</item>
+        <item>2010</item>
+        <item>2016</item>
+    </integer-array>
+
+    <string-array name="generos_name">
+        <item>@string/jazz</item>
+        <item>@string/jazz</item>
+        <item>@string/rock</item>
+        <item>@string/mpb</item>
+        <item>@string/jazz</item>
+        <item>@string/mpb</item>
+        <item>@string/classico</item>
+        <item>@string/soul</item>
+        <item>@string/classico</item>
+        <item>@string/mpb</item>
+    </string-array>
+
+    <integer-array name="capa_albums">
+        <item>@drawable/kind_of_blue</item>
+        <item>@drawable/maiden_voyage</item>
+        <item>@drawable/dark_moon</item>
+        <item>@drawable/elis_tom</item>
+        <item>@drawable/bright_size_life</item>
+        <item>@drawable/elis_montreux</item>
+        <item>@drawable/osesp_santoro</item>
+        <item>@drawable/back_to_black</item>
+        <item>@drawable/osesp_coro</item>
+        <item>@drawable/trio_corrente</item>
+    </integer-array>
+
+
+</resources>

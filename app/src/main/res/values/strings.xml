@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Coleção de Discos</string>
+
+    <string name="album">Álbum</string>
+    <string name="ano_gravacao">Ano de gravação</string>
+    <string name="disco_vinil">Disco de vinil?</string>
+
+    <string name="hint_album">Informe o álbum</string>
+    <string name="hint_ano_gravacao">Informe o ano de gravação</string>
+    <string name="hint_genero">Escolha um genero</string>
+
+    <string name="description">Imagem álbum</string>
+
+    <string name="btnLimpar">Limpar</string>
+    <string name="btnSalvar">Salvar</string>
+
+    <string name="error_album">Campo Álbum não pode ser vazio</string>
+    <string name="error_ano_gravacao">Campo Ano de Gravação não pode ser vazio</string>
+    <string name="error_item">Escolha se é Original ou Cópia</string>
+
+    <string name="msg_clear_form">Formulário limpo!</string>
+    <string name="msg_success">Sucesso!</string>
+    <string name="msg_select">" foi selecionado!"</string>
+
+    <string name="rb_original">Original</string>
+    <string name="rb_copia">Cópia</string>
+
+    <string name="jazz">Jazz</string>
+    <string name="rock">Rock</string>
+    <string name="classico">Clássico</string>
+    <string name="mpb">MPB</string>
+    <string name="soul">Soul</string>
+    <string name="generos">Generos</string>
+
+    <string name="d_kind_of_blue">Kind of Blue</string>
+    <string name="d_maiden_voyage">Maiden Voyage</string>
+    <string name="d_dark_side">The Dark Side of the Moon</string>
+    <string name="d_elis_tom">Elis &amp; Tom</string>
+    <string name="d_bright_size_life">Bright Size Life</string>
+    <string name="d_elis_montreux">Elis Regina - Montreux Jazz Festival</string>
+    <string name="d_osesp_santoro">OSESP - Claudio Santoro</string>
+    <string name="d_back_to_black">Back to Black</string>
+    <string name="d_osesp_cancoes">Canções do Brasil - Coro da OSESP</string>
+    <string name="d_trio_corrente">Trio Corrente - Volume 3</string>
+
+</resources>
