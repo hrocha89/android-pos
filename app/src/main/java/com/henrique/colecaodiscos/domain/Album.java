@@ -4,17 +4,20 @@ import android.graphics.drawable.Drawable;
 
 public class Album {
 
-    private Integer id;
     private String nome;
     private Integer anoGravacao;
     private Genero genero;
+    private Boolean isVinil;
+    private Item item;
     private Drawable capa;
 
-    public Album(Integer id, String nome, Integer anoGravacao, Genero genero, Drawable capa) {
-        this.id = id;
+
+    public Album(String nome, Integer anoGravacao, Genero genero, Boolean isVinil, Item item, Drawable capa) {
         this.nome = nome;
         this.anoGravacao = anoGravacao;
         this.genero = genero;
+        this.isVinil = isVinil;
+        this.item = item;
         this.capa = capa;
     }
 
@@ -22,12 +25,8 @@ public class Album {
         return nome + " - " + genero.getNome();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public String getAnoComTipoItem() {
+        return anoGravacao + " (" + item.getDescricao() + ") ";
     }
 
     public String getNome() {
@@ -52,6 +51,22 @@ public class Album {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public Boolean getVinil() {
+        return isVinil;
+    }
+
+    public void setVinil(Boolean vinil) {
+        isVinil = vinil;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Drawable getCapa() {

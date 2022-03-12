@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ColecaoDiscos">
         <activity
+            android:name=".AboutActivity"
+            android:exported="true" />
+        <activity
             android:name=".ListActivity"
             android:exported="true">
             <intent-filter>
@@ -19,9 +22,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:name=".AlbumActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

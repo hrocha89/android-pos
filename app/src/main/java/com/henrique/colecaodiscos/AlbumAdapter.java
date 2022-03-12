@@ -66,7 +66,7 @@ public class AlbumAdapter extends BaseAdapter {
 
         holder.imageViewCapa.setImageDrawable(albums.get(position).getCapa());
         holder.textViewAlbum.setText(albums.get(position).getNomeComGenero());
-        holder.textViewAno.setText(String.format("%s", albums.get(position).getAnoGravacao()));
+        holder.textViewAno.setText(albums.get(position).getAnoComTipoItem());
 
         return convertView;
 

@@ -13,6 +13,8 @@
 
     <string name="btnLimpar">Limpar</string>
     <string name="btnSalvar">Salvar</string>
+    <string name="btnNew">Novo</string>
+    <string name="btnAbout">Sobre</string>
 
     <string name="error_album">Campo Álbum não pode ser vazio</string>
     <string name="error_ano_gravacao">Campo Ano de Gravação não pode ser vazio</string>
@@ -42,5 +44,11 @@
     <string name="d_back_to_black">Back to Black</string>
     <string name="d_osesp_cancoes">Canções do Brasil - Coro da OSESP</string>
     <string name="d_trio_corrente">Trio Corrente - Volume 3</string>
+
+    <string name="logo_utfpr">logo_utfpr</string>
+    <string name="autor_app">Autor: Henrique Rocha Almeida</string>
+    <string name="curso_app">Curso: Pós Graduação em Java</string>
+    <string name="email_app">Email: almeida89henrique@gmail.com</string>
+    <string name="descricao_app">Descrição: Auxilia na organização e controle de seu arquivo pessoal</string>
 
 </resources>
