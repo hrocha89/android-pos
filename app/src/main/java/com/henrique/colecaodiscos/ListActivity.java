@@ -2,15 +2,19 @@ package com.henrique.colecaodiscos;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.henrique.colecaodiscos.domain.Album;
@@ -21,10 +25,56 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
+    private ActionMode actionMode;
+    private View viewSelected;
     private ListView listAlbums;
     private final ArrayList<Album> albums = new ArrayList<>();
     private final AlbumAdapter albumAdapter = new AlbumAdapter(this, albums);
     private int posicao = -1;
+
+
+    private ActionMode.Callback callActionMode = new ActionMode.Callback() {
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater menuInflater = mode.getMenuInflater();
+            menuInflater.inflate(R.menu.album_select_options, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.menuItemEdit:
+                    alterAlbum();
+                    mode.finish();
+                    return true;
+                case R.id.menuItemDelete:
+                    removeAlbum();
+                    mode.finish();
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            if (viewSelected != null) {
+                viewSelected.setBackgroundColor(Color.TRANSPARENT);
+            }
+
+            actionMode = null;
+            viewSelected = null;
+
+            listAlbums.setEnabled(true);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +83,47 @@ public class ListActivity extends AppCompatActivity {
 
         listAlbums = findViewById(R.id.listAlbums);
 
-        listAlbums.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                posicao = position;
-                alterAlbum(posicao);
-            }
+        listAlbums.setOnItemClickListener((parent, view, position, id) -> {
+            posicao = position;
+            alterAlbum();
         });
 
-        Button buttonNew = findViewById(R.id.btnNovo);
-        buttonNew.setOnClickListener(this::selectNew);
+        listAlbums.setOnItemLongClickListener((parent, view, position, id) -> {
+            if (actionMode != null) {
+                return false;
+            }
 
-        Button buttonAbout = findViewById(R.id.btnSobre);
-        buttonAbout.setOnClickListener(this::selectAbout);
+            posicao = position;
+            view.setBackgroundColor(Color.LTGRAY);
+            viewSelected = view;
+            listAlbums.setEnabled(false);
+
+            actionMode = startSupportActionMode(callActionMode);
+
+            return true;
+        });
 
         listAlbums.setAdapter(albumAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.list_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuItemAdd:
+                selectNew();
+                return true;
+            case R.id.menuItemAbout:
+                selectAbout();
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override
@@ -69,17 +145,22 @@ public class ListActivity extends AppCompatActivity {
         }
     }
 
-    private void selectAbout(View view) {
+    private void selectAbout() {
         AboutActivity.about(this);
     }
 
-    private void selectNew(View view) {
+    private void selectNew() {
         AlbumActivity.newAlbum(this);
     }
 
-    private void alterAlbum(int position) {
-        Album album = albums.get(position);
+    private void alterAlbum() {
+        Album album = albums.get(posicao);
         AlbumActivity.alterAlbum(this, album);
+    }
+
+    private void removeAlbum() {
+        albums.remove(posicao);
+        albumAdapter.notifyDataSetChanged();
     }
 
     private Album createAlbum(Bundle bundle, Album entity) {

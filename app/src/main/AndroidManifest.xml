@@ -11,7 +11,8 @@
         android:theme="@style/Theme.ColecaoDiscos">
         <activity
             android:name=".AboutActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ListActivity" />
         <activity
             android:name=".ListActivity"
             android:exported="true">
@@ -23,7 +24,8 @@
         </activity>
         <activity
             android:name=".AlbumActivity"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:parentActivityName=".ListActivity" />
     </application>
 
 </manifest>

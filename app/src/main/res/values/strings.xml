@@ -11,11 +11,6 @@
 
     <string name="description">Imagem álbum</string>
 
-    <string name="btnLimpar">Limpar</string>
-    <string name="btnSalvar">Salvar</string>
-    <string name="btnNew">Novo</string>
-    <string name="btnAbout">Sobre</string>
-
     <string name="error_album">Campo Álbum não pode ser vazio</string>
     <string name="error_ano_gravacao">Campo Ano de Gravação não pode ser vazio</string>
     <string name="error_item">Escolha se é Original ou Cópia</string>
@@ -50,5 +45,12 @@
     <string name="curso_app">Curso: Pós Graduação em Java</string>
     <string name="email_app">Email: almeida89henrique@gmail.com</string>
     <string name="descricao_app">Descrição: Auxilia na organização e controle de seu arquivo pessoal</string>
+
+    <string name="add_disco">Adicionar</string>
+    <string name="about_app">Sobre</string>
+    <string name="menuItemSave">Salvar</string>
+    <string name="menuItemClear">Limpar</string>
+    <string name="menuItemEdit">Editar</string>
+    <string name="menuItemDelete">Excluir</string>
 
 </resources>

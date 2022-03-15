@@ -3,15 +3,17 @@ package com.henrique.colecaodiscos;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.henrique.colecaodiscos.domain.Album;
@@ -65,6 +67,11 @@ public class AlbumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         album = findViewById(R.id.nomeAlbum);
         anoGravacao = findViewById(R.id.anoGravacao);
         isVinil = findViewById(R.id.isVinil);
@@ -88,16 +95,42 @@ public class AlbumActivity extends AppCompatActivity {
 
         }
 
-
-        Button btnLimpar = findViewById(R.id.btnLimpar);
-        btnLimpar.setOnClickListener(this::clearForm);
-
-        Button btnSave = findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(this::save);
-
     }
 
-    private void clearForm(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.album_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuItemSave:
+                save();
+                return true;
+            case R.id.menuItemClear:
+                clearForm();
+                return true;
+            case android.R.id.home:
+                cancel();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancel();
+    }
+
+    private void cancel() {
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    private void clearForm() {
         album.setText(null);
         anoGravacao.setText(null);
         isVinil.setChecked(false);
@@ -109,7 +142,7 @@ public class AlbumActivity extends AppCompatActivity {
         toastMessage(getString(R.string.msg_clear_form));
     }
 
-    private void save(View view) {
+    private void save() {
         if (isInvalid(album)) {
             focusAndMessage(album, getString(R.string.error_album));
             return;
