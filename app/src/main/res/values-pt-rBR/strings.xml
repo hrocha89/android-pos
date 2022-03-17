@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Coleção de Discos</string>
+
+    <string name="album">Álbum</string>
+    <string name="ano_gravacao">Ano de gravação</string>
+    <string name="disco_vinil">Disco de vinil?</string>
+
+    <string name="hint_album">Informe o álbum</string>
+    <string name="hint_ano_gravacao">Informe o ano de gravação</string>
+    <string name="hint_genero">Escolha um gênero</string>
+
+    <string name="description">Imagem álbum</string>
+
+    <string name="error_album">Campo Álbum não pode ser vazio</string>
+    <string name="error_ano_gravacao">Campo Ano de Gravação não pode ser vazio</string>
+    <string name="error_item">Escolha se é Original ou Cópia</string>
+
+    <string name="msg_clear_form">Formulário limpo!</string>
+    <string name="msg_success">Sucesso!</string>
+    <string name="msg_select">" foi selecionado!"</string>
+
+    <string name="rb_original">Original</string>
+    <string name="rb_copia">Cópia</string>
+
+    <string name="jazz">Jazz</string>
+    <string name="rock">Rock</string>
+    <string name="classico">Clássico</string>
+    <string name="mpb">MPB</string>
+    <string name="soul">Soul</string>
+    <string name="generos">Gêneros</string>
+
+    <string name="autor_app">Autor: Henrique Rocha Almeida</string>
+    <string name="curso_app">Curso: Pós Graduação em Java</string>
+    <string name="email_app">Email: almeida89henrique@gmail.com</string>
+    <string name="descricao_app">Descrição: Auxilia na organização e controle de seu arquivo pessoal</string>
+
+    <string name="add_disco">Adicionar</string>
+    <string name="about_app">Sobre</string>
+    <string name="menuItemSave">Salvar</string>
+    <string name="menuItemClear">Limpar</string>
+    <string name="menuItemEdit">Editar</string>
+    <string name="menuItemDelete">Excluir</string>
+
+    <string name="themeLigth">Claro</string>
+    <string name="themeDark">Escuro</string>
+    <string name="themes">Temas</string>
+</resources>

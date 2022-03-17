@@ -9,10 +9,13 @@
         <entry key="app/src/main/res/layout/activity_author.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_list.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.375" />
         <entry key="app/src/main/res/layout/list_albums.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/switch_item.xml" value="0.375" />
         <entry key="app/src/main/res/menu/about_options.xml" value="0.375" />
         <entry key="app/src/main/res/menu/album_options.xml" value="0.375" />
         <entry key="app/src/main/res/menu/album_select_options.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/list_options.xml" value="0.375" />
         <entry key="app/src/main/res/menu/opcoes.xml" value="0.375" />
       </map>
     </option>

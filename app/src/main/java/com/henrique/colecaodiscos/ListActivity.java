@@ -2,6 +2,7 @@ package com.henrique.colecaodiscos;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,9 +15,11 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.ActionMode;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.henrique.colecaodiscos.config.Settings;
 import com.henrique.colecaodiscos.domain.Album;
 import com.henrique.colecaodiscos.domain.Genero;
 import com.henrique.colecaodiscos.domain.Item;
@@ -81,6 +84,8 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        initPreferences();
+
         listAlbums = findViewById(R.id.listAlbums);
 
         listAlbums.setOnItemClickListener((parent, view, position, id) -> {
@@ -121,6 +126,9 @@ public class ListActivity extends AppCompatActivity {
             case R.id.menuItemAbout:
                 selectAbout();
                 return true;
+            case R.id.menuItemSetting:
+                selectSettings();
+                return true;
             default:
                 return false;
         }
@@ -145,8 +153,23 @@ public class ListActivity extends AppCompatActivity {
         }
     }
 
+    private void initPreferences() {
+        SharedPreferences shared = getSharedPreferences(Settings.PREFERENCE, MODE_PRIVATE);
+        boolean isNigth = shared.getBoolean(Settings.THEME_CUSTOM, false);
+
+        if (isNigth) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
     private void selectAbout() {
         AboutActivity.about(this);
+    }
+
+    private void selectSettings() {
+        SettingsActivity.settings(this);
     }
 
     private void selectNew() {

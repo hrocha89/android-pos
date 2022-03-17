@@ -11,4 +11,8 @@
         android:id="@+id/menuItemAbout"
         android:title="@string/about_app"
         app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menuItemSetting"
+        android:title="@string/themes"
+        app:showAsAction="ifRoom|withText" />
 </menu>

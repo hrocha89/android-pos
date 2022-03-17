@@ -1,56 +1,60 @@
 <resources>
-    <string name="app_name">Coleção de Discos</string>
+    <string name="app_name">Record Collection</string>
 
-    <string name="album">Álbum</string>
-    <string name="ano_gravacao">Ano de gravação</string>
-    <string name="disco_vinil">Disco de vinil?</string>
+    <string name="album">Album</string>
+    <string name="ano_gravacao">Recording year</string>
+    <string name="disco_vinil">Vinyl disc?</string>
 
-    <string name="hint_album">Informe o álbum</string>
-    <string name="hint_ano_gravacao">Informe o ano de gravação</string>
-    <string name="hint_genero">Escolha um genero</string>
+    <string name="hint_album">Inform the album</string>
+    <string name="hint_ano_gravacao">Inform the year of recording</string>
+    <string name="hint_genero">Choose a music genre</string>
 
-    <string name="description">Imagem álbum</string>
+    <string name="description">Album image</string>
 
-    <string name="error_album">Campo Álbum não pode ser vazio</string>
-    <string name="error_ano_gravacao">Campo Ano de Gravação não pode ser vazio</string>
-    <string name="error_item">Escolha se é Original ou Cópia</string>
+    <string name="error_album">Album field cannot be empty</string>
+    <string name="error_ano_gravacao">Recording Year field cannot be empty</string>
+    <string name="error_item">Choose whether it\'s Original or Copy</string>
 
-    <string name="msg_clear_form">Formulário limpo!</string>
-    <string name="msg_success">Sucesso!</string>
-    <string name="msg_select">" foi selecionado!"</string>
+    <string name="msg_clear_form">Clean form!</string>
+    <string name="msg_success">Success!</string>
+    <string name="msg_select">selected!</string>
 
     <string name="rb_original">Original</string>
-    <string name="rb_copia">Cópia</string>
+    <string name="rb_copia">Copy</string>
 
     <string name="jazz">Jazz</string>
     <string name="rock">Rock</string>
-    <string name="classico">Clássico</string>
+    <string name="classico">Classic</string>
     <string name="mpb">MPB</string>
     <string name="soul">Soul</string>
-    <string name="generos">Generos</string>
+    <string name="generos">Genres</string>
 
-    <string name="d_kind_of_blue">Kind of Blue</string>
-    <string name="d_maiden_voyage">Maiden Voyage</string>
-    <string name="d_dark_side">The Dark Side of the Moon</string>
-    <string name="d_elis_tom">Elis &amp; Tom</string>
-    <string name="d_bright_size_life">Bright Size Life</string>
-    <string name="d_elis_montreux">Elis Regina - Montreux Jazz Festival</string>
-    <string name="d_osesp_santoro">OSESP - Claudio Santoro</string>
-    <string name="d_back_to_black">Back to Black</string>
-    <string name="d_osesp_cancoes">Canções do Brasil - Coro da OSESP</string>
-    <string name="d_trio_corrente">Trio Corrente - Volume 3</string>
+    <string name="d_kind_of_blue" translatable="false">Kind of Blue</string>
+    <string name="d_maiden_voyage" translatable="false">Maiden Voyage</string>
+    <string name="d_dark_side" translatable="false">The Dark Side of the Moon</string>
+    <string name="d_elis_tom" translatable="false">Elis &amp; Tom</string>
+    <string name="d_bright_size_life" translatable="false">Bright Size Life</string>
+    <string name="d_elis_montreux" translatable="false">Elis Regina - Montreux Jazz Festival</string>
+    <string name="d_osesp_santoro" translatable="false">OSESP - Claudio Santoro</string>
+    <string name="d_back_to_black" translatable="false">Back to Black</string>
+    <string name="d_osesp_cancoes" translatable="false">Canções do Brasil - Coro da OSESP</string>
+    <string name="d_trio_corrente" translatable="false">Trio Corrente - Volume 3</string>
 
-    <string name="logo_utfpr">logo_utfpr</string>
-    <string name="autor_app">Autor: Henrique Rocha Almeida</string>
-    <string name="curso_app">Curso: Pós Graduação em Java</string>
+    <string name="logo_utfpr" translatable="false">logo_utfpr</string>
+    <string name="autor_app">Author: Henrique Rocha Almeida</string>
+    <string name="curso_app">Course: Post Graduation in Java</string>
     <string name="email_app">Email: almeida89henrique@gmail.com</string>
-    <string name="descricao_app">Descrição: Auxilia na organização e controle de seu arquivo pessoal</string>
+    <string name="descricao_app">Description: Assists in the organization and control of your personal file</string>
 
-    <string name="add_disco">Adicionar</string>
-    <string name="about_app">Sobre</string>
-    <string name="menuItemSave">Salvar</string>
-    <string name="menuItemClear">Limpar</string>
-    <string name="menuItemEdit">Editar</string>
-    <string name="menuItemDelete">Excluir</string>
+    <string name="add_disco">Add</string>
+    <string name="about_app">About</string>
+    <string name="menuItemSave">Save</string>
+    <string name="menuItemClear">Clear</string>
+    <string name="menuItemEdit">Edit</string>
+    <string name="menuItemDelete">Delete</string>
+
+    <string name="themeLigth">Ligth</string>
+    <string name="themeDark">Dark</string>
+    <string name="themes">Themes</string>
 
 </resources>
