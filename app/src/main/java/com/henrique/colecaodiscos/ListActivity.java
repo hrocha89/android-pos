@@ -1,10 +1,10 @@
 package com.henrique.colecaodiscos;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,23 +17,24 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.ActionMode;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.henrique.colecaodiscos.config.Settings;
 import com.henrique.colecaodiscos.domain.Album;
-import com.henrique.colecaodiscos.domain.Genero;
-import com.henrique.colecaodiscos.domain.Item;
+import com.henrique.colecaodiscos.repository.AlbumDB;
+import com.henrique.colecaodiscos.utils.DialogUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
     private ActionMode actionMode;
     private View viewSelected;
     private ListView listAlbums;
-    private final ArrayList<Album> albums = new ArrayList<>();
+    private final List<Album> albums = new ArrayList<>();
     private final AlbumAdapter albumAdapter = new AlbumAdapter(this, albums);
-    private int posicao = -1;
+
+    private Album albumSelected;
 
 
     private ActionMode.Callback callActionMode = new ActionMode.Callback() {
@@ -54,11 +55,11 @@ public class ListActivity extends AppCompatActivity {
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.menuItemEdit:
-                    alterAlbum();
+                    AlbumActivity.alterAlbum(ListActivity.this, albumSelected);
                     mode.finish();
                     return true;
                 case R.id.menuItemDelete:
-                    removeAlbum();
+                    removeAlbum(albumSelected);
                     mode.finish();
                     return true;
                 default:
@@ -89,8 +90,8 @@ public class ListActivity extends AppCompatActivity {
         listAlbums = findViewById(R.id.listAlbums);
 
         listAlbums.setOnItemClickListener((parent, view, position, id) -> {
-            posicao = position;
-            alterAlbum();
+            albumSelected = (Album) parent.getItemAtPosition(position);
+            AlbumActivity.alterAlbum(ListActivity.this, albumSelected);
         });
 
         listAlbums.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -98,7 +99,7 @@ public class ListActivity extends AppCompatActivity {
                 return false;
             }
 
-            posicao = position;
+            albumSelected = (Album) parent.getItemAtPosition(position);
             view.setBackgroundColor(Color.LTGRAY);
             viewSelected = view;
             listAlbums.setEnabled(false);
@@ -108,7 +109,7 @@ public class ListActivity extends AppCompatActivity {
             return true;
         });
 
-        listAlbums.setAdapter(albumAdapter);
+        populaListAlbums();
     }
 
     @Override
@@ -138,19 +139,16 @@ public class ListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (data != null && resultCode == Activity.RESULT_OK) {
-
-            Bundle bundle = data.getExtras();
-
-            if (requestCode == AlbumActivity.ALTER) {
-                createAlbum(bundle, albums.get(posicao));
-                posicao = -1;
-            } else {
-                albums.add(createAlbum(bundle, null));
-            }
-
-            albumAdapter.notifyDataSetChanged();
+        if (resultCode == Activity.RESULT_OK) {
+            populaListAlbums();
         }
+    }
+
+    private void populaListAlbums() {
+        albums.clear();
+        AlbumDB dataBase = AlbumDB.getDataBase(this);
+        albums.addAll(dataBase.albumDAO().findAll());
+        listAlbums.setAdapter(albumAdapter);
     }
 
     private void initPreferences() {
@@ -176,44 +174,27 @@ public class ListActivity extends AppCompatActivity {
         AlbumActivity.newAlbum(this);
     }
 
-    private void alterAlbum() {
-        Album album = albums.get(posicao);
-        AlbumActivity.alterAlbum(this, album);
-    }
+    private void removeAlbum(final Album album) {
 
-    private void removeAlbum() {
-        albums.remove(posicao);
-        albumAdapter.notifyDataSetChanged();
-    }
+        String message = getString(R.string.msg, album.getNome());
 
-    private Album createAlbum(Bundle bundle, Album entity) {
+        DialogInterface.OnClickListener listener = (dialog, which) -> {
 
-        String album = bundle.getString(AlbumActivity.ALBUM);
-        int anoGravacao = bundle.getInt(AlbumActivity.ANO_GRAVACAO);
-        boolean isVinil = bundle.getBoolean(AlbumActivity.IS_VINIL);
-        String genero = bundle.getString(AlbumActivity.GENERO);
-        int item = bundle.getInt(AlbumActivity.ITEM);
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    AlbumDB dataBase = AlbumDB.getDataBase(ListActivity.this);
+                    dataBase.albumDAO().delete(album);
+                    albumAdapter.remove(album);
+                    break;
 
-        Item tipoItem = Item.fromItem(item);
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
 
-        if (entity == null) {
-            return new Album(album, anoGravacao, new Genero(genero), isVinil, tipoItem, getImage(isVinil));
-        }
+        };
 
-        entity.setNome(album);
-        entity.setAnoGravacao(anoGravacao);
-        entity.setGenero(new Genero(genero));
-        entity.setVinil(isVinil);
-        entity.setItem(tipoItem);
-        entity.setCapa(getImage(isVinil));
+        DialogUtils.confirm(this, listener, message);
 
-        return entity;
-    }
-
-    private Drawable getImage(boolean isVinil) {
-        return isVinil ?
-                ResourcesCompat.getDrawable(getResources(), R.drawable.vinil, null) :
-                ResourcesCompat.getDrawable(getResources(), R.drawable.cd, null);
     }
 
 }

@@ -57,4 +57,12 @@
     <string name="themeDark">Dark</string>
     <string name="themes">Themes</string>
 
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
+
+    <string name="tituloConfirmar">Do you want to confirm?</string>
+
+    <string name="msg">"Confirm delete %1$s ?"</string>
+
+
 </resources>

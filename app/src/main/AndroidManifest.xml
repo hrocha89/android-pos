@@ -12,7 +12,7 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
-            android:parentActivityName=".ListActivity"/>
+            android:parentActivityName=".ListActivity" />
         <activity
             android:name=".AboutActivity"
             android:exported="true"

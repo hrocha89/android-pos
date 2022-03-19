@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.henrique.colecaodiscos.domain.Album;
 import com.henrique.colecaodiscos.domain.Item;
+import com.henrique.colecaodiscos.repository.AlbumDB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +31,16 @@ public class AlbumActivity extends AppCompatActivity {
     private Spinner genero;
 
     public static final String MOD = "MOD";
-
-    public static final String ALBUM = "ALBUM";
-    public static final String ANO_GRAVACAO = "ANO_GRAVACAO";
-    public static final String ITEM = "ITEM";
-    public static final String IS_VINIL = "IS_VINIL";
-    public static final String GENERO = "GENERO";
+    public static final String ID = "ID";
 
     public static final int NEW = 1;
     public static final int ALTER = 2;
 
     private List<String> listGeneroSpinner = new ArrayList<>();
+
+    private Album albumEntity = new Album();
+
+    private int modo;
 
     public static void newAlbum(AppCompatActivity activity) {
         Intent intent = new Intent(activity, AlbumActivity.class);
@@ -53,11 +53,7 @@ public class AlbumActivity extends AppCompatActivity {
         Intent intent = new Intent(activity, AlbumActivity.class);
 
         intent.putExtra(MOD, ALTER);
-        intent.putExtra(ALBUM, album.getNome());
-        intent.putExtra(ANO_GRAVACAO, album.getAnoGravacao().toString());
-        intent.putExtra(IS_VINIL, album.getVinil());
-        intent.putExtra(GENERO, album.getGenero().getNome());
-        intent.putExtra(ITEM, Item.fromId(album.getItem()));
+        intent.putExtra(ID, album.getId());
 
         activity.startActivityForResult(intent, ALTER);
     }
@@ -85,12 +81,20 @@ public class AlbumActivity extends AppCompatActivity {
 
         if (bundle != null) {
 
-            if (bundle.getInt(MOD, NEW) == ALTER) {
-                album.setText(bundle.getString(ALBUM));
-                anoGravacao.setText(bundle.getString(ANO_GRAVACAO));
-                isVinil.setChecked(bundle.getBoolean(IS_VINIL));
-                item.check(bundle.getInt(ITEM));
-                genero.setSelection(listGeneroSpinner.indexOf(bundle.getString(GENERO)));
+            modo = bundle.getInt(MOD, NEW);
+
+            if (modo == ALTER) {
+
+                int id = bundle.getInt(ID);
+
+                AlbumDB dataBase = AlbumDB.getDataBase(this);
+                albumEntity = dataBase.albumDAO().findOne(id);
+
+                album.setText(albumEntity.getNome());
+                anoGravacao.setText(String.format("%s", albumEntity.getAnoGravacao()));
+                isVinil.setChecked(albumEntity.getVinil());
+                item.check(Item.fromId(albumEntity.getItem()));
+                genero.setSelection(listGeneroSpinner.indexOf(albumEntity.getGenero()));
             }
 
         }
@@ -158,28 +162,33 @@ public class AlbumActivity extends AppCompatActivity {
             return;
         }
 
-        setResult(Activity.RESULT_OK, createIntent());
+        setValueEntity();
 
+        AlbumDB dataBase = AlbumDB.getDataBase(this);
+
+        if (modo == ALTER) {
+            dataBase.albumDAO().update(albumEntity);
+        } else {
+            dataBase.albumDAO().insert(albumEntity);
+        }
+
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
-    private Intent createIntent() {
+    private void setValueEntity() {
 
-        String album = this.album.getText().toString();
-        Integer anoGravacao = Integer.parseInt(this.anoGravacao.getText().toString());
+        String nome = album.getText().toString();
+        int ano = Integer.parseInt(anoGravacao.getText().toString());
         boolean isVinil = this.isVinil.isChecked();
         int item = this.item.getCheckedRadioButtonId();
         String genero = (String) this.genero.getSelectedItem();
 
-
-        Intent intent = new Intent();
-        intent.putExtra(ALBUM, album);
-        intent.putExtra(ANO_GRAVACAO, anoGravacao);
-        intent.putExtra(IS_VINIL, isVinil);
-        intent.putExtra(ITEM, item);
-        intent.putExtra(GENERO, genero);
-
-        return intent;
+        albumEntity.setNome(nome);
+        albumEntity.setAnoGravacao(ano);
+        albumEntity.setVinil(isVinil);
+        albumEntity.setGenero(genero);
+        albumEntity.setItem(Item.fromItem(item));
 
     }
 

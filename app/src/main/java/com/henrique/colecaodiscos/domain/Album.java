@@ -1,39 +1,60 @@
 package com.henrique.colecaodiscos.domain;
 
-import android.graphics.drawable.Drawable;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Album {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @NonNull
     private String nome;
-    private Integer anoGravacao;
-    private Genero genero;
+
+    private int anoGravacao;
+
+    @NonNull
+    private String genero;
+
     private Boolean isVinil;
+
     private Item item;
-    private Drawable capa;
 
-
-    public Album(String nome, Integer anoGravacao, Genero genero, Boolean isVinil, Item item, Drawable capa) {
+    public Album(@NonNull String nome, int anoGravacao, @NonNull String genero, boolean isVinil, Item item) {
         this.nome = nome;
         this.anoGravacao = anoGravacao;
         this.genero = genero;
         this.isVinil = isVinil;
         this.item = item;
-        this.capa = capa;
+    }
+
+    public Album() {
     }
 
     public String getNomeComGenero() {
-        return nome + " - " + genero.getNome();
+        return nome + " - " + genero;
     }
 
-    public String getAnoComTipoItem() {
+    public String getAnoComItem() {
         return anoGravacao + " (" + item.getDescricao() + ") ";
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NonNull
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(@NonNull String nome) {
         this.nome = nome;
     }
 
@@ -41,15 +62,16 @@ public class Album {
         return anoGravacao;
     }
 
-    public void setAnoGravacao(Integer anoGravacao) {
+    public void setAnoGravacao(int anoGravacao) {
         this.anoGravacao = anoGravacao;
     }
 
-    public Genero getGenero() {
+    @NonNull
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(Genero genero) {
+    public void setGenero(@NonNull String genero) {
         this.genero = genero;
     }
 
@@ -67,13 +89,5 @@ public class Album {
 
     public void setItem(Item item) {
         this.item = item;
-    }
-
-    public Drawable getCapa() {
-        return capa;
-    }
-
-    public void setCapa(Drawable capa) {
-        this.capa = capa;
     }
 }

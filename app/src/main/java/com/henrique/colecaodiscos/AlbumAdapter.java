@@ -1,12 +1,15 @@
 package com.henrique.colecaodiscos;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import com.henrique.colecaodiscos.domain.Album;
 
@@ -64,11 +67,22 @@ public class AlbumAdapter extends BaseAdapter {
             holder = (AlbumHolder) convertView.getTag();
         }
 
-        holder.imageViewCapa.setImageDrawable(albums.get(position).getCapa());
+        holder.imageViewCapa.setImageDrawable(getImage(albums.get(position).getVinil()));
         holder.textViewAlbum.setText(albums.get(position).getNomeComGenero());
-        holder.textViewAno.setText(albums.get(position).getAnoComTipoItem());
+        holder.textViewAno.setText(albums.get(position).getAnoComItem());
 
         return convertView;
 
+    }
+
+    public void remove(Album album) {
+        albums.remove(album);
+        notifyDataSetChanged();
+    }
+
+    private Drawable getImage(boolean isVinil) {
+        return isVinil ?
+                ResourcesCompat.getDrawable(context.getResources(), R.drawable.vinil, null) :
+                ResourcesCompat.getDrawable(context.getResources(), R.drawable.cd, null);
     }
 }

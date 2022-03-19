@@ -45,4 +45,10 @@
     <string name="themeLigth">Claro</string>
     <string name="themeDark">Escuro</string>
     <string name="themes">Temas</string>
+
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+
+    <string name="tituloConfirmar">Deseja confirmar?</string>
+    <string name="msg">"Tem certeza que deseja excluir %1$s ?"</string>
 </resources>
